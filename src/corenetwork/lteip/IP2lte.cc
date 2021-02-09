@@ -10,7 +10,7 @@
 #include <inet/common/ModuleAccess.h>
 #include <inet/common/IInterfaceRegistrationListener.h>
 
-#include <inet/applications/common/SocketTag_m.h>
+#include <inet/common/socket/SocketTag_m.h>
 
 #include <inet/transportlayer/tcp_common/TcpHeader.h>
 #include <inet/transportlayer/udp/Udp.h>
@@ -18,7 +18,7 @@
 #include <inet/transportlayer/udp/UdpHeader_m.h>
 #include <inet/transportlayer/common/L4Tools.h>
 
-#include <inet/networklayer/common/InterfaceEntry.h>
+#include <inet/networklayer/common/NetworkInterface.h>
 #include <inet/networklayer/ipv4/Ipv4InterfaceData.h>
 #include <inet/networklayer/ipv4/Ipv4Route.h>
 #include <inet/networklayer/ipv4/IIpv4RoutingTable.h>
@@ -77,7 +77,7 @@ void IP2lte::initialize(int stage)
     else if (stage == inet::INITSTAGE_STATIC_ROUTING) {
         if (nodeType_ == UE) {
             // TODO: shift to routing stage
-            // if the UE has been created dynamically, we need to manually add a default route having "wlan" as output interface
+            // if the UE has been created dynamically, we need to manually add a default route having "cellular" as output interface
             // otherwise we are not able to reach devices outside the cellular network
             if (NOW > 0) {
                 /**
@@ -94,6 +94,12 @@ void IP2lte::initialize(int stage)
                 defaultRoute->setInterface(interfaceEntry);
 
                 irt->addRoute(defaultRoute);
+
+                // workaround for nodes using the HostAutoConfigurator:
+                // Since the HostAutoConfigurator calls setBroadcast(true) for all
+                // interfaces in setupNetworking called in INITSTAGE_NETWORK_CONFIGURATION
+                // we must reset it to false since LteNic does not support broadcasts
+                interfaceEntry->setBroadcast(false);
             }
         }
     } else if (stage == inet::INITSTAGE_TRANSPORT_LAYER) {
@@ -116,8 +122,8 @@ void IP2lte::handleMessage(cMessage *msg)
             auto pkt = check_and_cast<Packet *>(msg);
             
             auto sockInd = pkt->removeTagIfPresent<SocketInd>();
-    		if (sockInd)
-        		delete sockInd;
+    		//if (sockInd)
+        	//	delete sockInd;
     		removeAllSimuLteTags(pkt);
             
             toIpEnb(pkt);
@@ -146,8 +152,8 @@ void IP2lte::handleMessage(cMessage *msg)
             EV << "LteIp: message from stack: send to transport" << endl;
             auto pkt = check_and_cast<Packet *>(msg);
             auto sockInd = pkt->removeTagIfPresent<SocketInd>();
-    		if (sockInd)
-        		delete sockInd;
+    		//if (sockInd)
+        	//	delete sockInd;
     		removeAllSimuLteTags(pkt);
 
     		toIpUe(pkt);
@@ -174,8 +180,8 @@ void IP2lte::fromIpUe(Packet * datagram)
     EV << "IP2lte::fromIpUe - message from IP layer: send to stack: "  << datagram->str() << std::endl;
     // Remove control info from IP datagram
     auto sockInd = datagram->removeTagIfPresent<SocketInd>();
-    if (sockInd)
-        delete sockInd;
+    //if (sockInd)
+    //    delete sockInd;
     
     removeAllSimuLteTags(datagram);
 
@@ -281,8 +287,8 @@ void IP2lte::fromIpEnb(Packet * pkt)
     EV << "IP2lte::fromIpEnb - message from IP layer: send to stack" << endl;
     // Remove control info from IP datagram
     auto sockInd = pkt->removeTagIfPresent<SocketInd>();
-    if (sockInd)
-        delete sockInd;
+    //if (sockInd)
+    //    delete sockInd;
     removeAllSimuLteTags(pkt);
 
     // Remove InterfaceReq Tag (we already are on an interface now)
@@ -414,7 +420,7 @@ void IP2lte::registerInterface()
     if (!ift)
         return;
     interfaceEntry = getContainingNicModule(this);
-    interfaceEntry->setInterfaceName("wlan");           // FIXME: user different name for lte interfaces
+    interfaceEntry->setInterfaceName(par("interfaceName").stdstringValue().c_str());
     // TODO configure MTE size from NED
     interfaceEntry->setMtu(1500);
     //disable broadcast (not supported in LteNic), enable multicast
@@ -436,20 +442,20 @@ void IP2lte::registerMulticastGroups()
     MacNodeId nodeId = check_and_cast<LteMacBase*>(getParentModule()->getSubmodule("mac"))->getMacNodeId();
 
     // get all the multicast addresses where the node is enrolled
-    InterfaceEntry * interfaceEntry;
+    NetworkInterface * interfaceEntry;
     IInterfaceTable *ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
     if (!ift)
         return;
-    interfaceEntry = ift->findInterfaceByName("wlan");
+    interfaceEntry = ift->findInterfaceByName(par("interfaceName").stdstringValue().c_str());
     unsigned int numOfAddresses = interfaceEntry->getProtocolData<Ipv4InterfaceData>()->getNumOfJoinedMulticastGroups();
 
     for (unsigned int i=0; i<numOfAddresses; ++i)
     {
         Ipv4Address addr = interfaceEntry->getProtocolData<Ipv4InterfaceData>()->getJoinedMulticastGroup(i);
         // get the group id and add it to the binder
-        uint32 address = addr.getInt();
-        uint32 mask = ~((uint32)255 << 28);      // 0000 1111 1111 1111
-        uint32 groupId = address & mask;
+        uint32_t address = addr.getInt();
+        uint32_t mask = ~((uint32_t)255 << 28);      // 0000 1111 1111 1111
+        uint32_t groupId = address & mask;
         binder_->registerMulticastGroup(nodeId, groupId);
     }
 }

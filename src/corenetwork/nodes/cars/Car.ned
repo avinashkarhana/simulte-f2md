@@ -31,16 +31,12 @@ module Car extends Ue
         @display("i=device/car");
 
         //# Mobility
-        mobilityType = default("VeinsInetMobility");
+        mobility.typename = default("VeinsInetMobility");
 
         //# Network Layer specs
-        *.routingTableModule = default(absPath(".ipv4.routingTable"));
+        *.routingTableModule = default("^.^.ipv4.routingTable");
         
+        //# Parameter values for HostAutoConfigurator: configure cellular interface
         ipv4.configurator.typename = "HostAutoConfigurator";
-        ipv4.configurator.interfaces = "wlan";
-        
-    submodules:
-	    configurator: HostAutoConfigurator {
-            @display("p=126.4,413.96");
-        }
+        ipv4.configurator.interfaces = default("cellular");
 }
