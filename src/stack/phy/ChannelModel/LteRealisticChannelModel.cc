@@ -451,7 +451,7 @@ std::vector<double> LteRealisticChannelModel::getSINR(LteAirFrame *frame, UserCo
     * if direction is DL and this is not a feedback packet,
     * this function has been called by LteRealisticChannelModel::error() in the UE
     *
-    *         DownLink error computation
+    *         DownLink error computation, also for HANDOVERPKT
     */
    if (dir == DL && (lteInfo->getFrameType() != FEEDBACKPKT))
    {
@@ -648,7 +648,11 @@ std::vector<double> LteRealisticChannelModel::getSINR(LteAirFrame *frame, UserCo
    multiCellInterference.resize(band_, 0);
    if (enableDownlinkInterference_ && dir == DL)
    {
-       computeDownlinkInterference(eNbId, ueId, ueCoord, (lteInfo->getFrameType() == FEEDBACKPKT), rbmap, &multiCellInterference);
+       if ((lteInfo->getFrameType() == HANDOVERPKT) && rbmap.size() == 0 ){
+           // control plane not implemented. HANDOVERPKT has no assigned RB's. Ignore downlink interference for this frame.
+       } else {
+           computeDownlinkInterference(eNbId, ueId, ueCoord, (lteInfo->getFrameType() == FEEDBACKPKT), rbmap, &multiCellInterference);
+       }
    }
    else if (enableUplinkInterference_ && dir == UL)
    {
