@@ -96,7 +96,6 @@ ScheduleList& LcgScheduler::schedule(unsigned int availableBytes, Direction gran
                 EV << "LcgScheduler::schedule scheduled connection is no more active " << endl;
                 continue; // go to next connection
             }
-            }
 
             unsigned int toServe = queueLength;
             // we need to consider also the size of RLC and MAC headers
