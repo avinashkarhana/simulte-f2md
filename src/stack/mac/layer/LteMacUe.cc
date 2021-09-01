@@ -141,12 +141,12 @@ void LteMacUe::initialize(int stage)
             throw new cRuntimeError("no Ipv4 interface data - cannot bind node %i", nodeId_);
         binder_->setMacNodeId(ipv4if->getIPAddress(), nodeId_);
 
-        // Register the "ext" interface, if present
-        if (getAncestorPar("enableExtInterface").boolValue())
+        // for emulation mode
+        const char* extHostAddress = getAncestorPar("extHostAddress").stringValue();
+        if (strcmp(extHostAddress, "") != 0)
         {
-            // get address of the localhost to enable forwarding
-            Ipv4Address extHostAddress = Ipv4Address(getAncestorPar("extHostAddress").stringValue());
-            binder_->setMacNodeId(extHostAddress, nodeId_);
+            // register the address of the external host to enable forwarding
+            binder_->setMacNodeId(Ipv4Address(extHostAddress), nodeId_);
         }
     }
 }
@@ -176,7 +176,6 @@ int LteMacUe::macSduRequest()
         allocatedBytes.push_back(schedulingGrant_->getGrantedCwBytes(cw));
 
     LteMacScheduleList* scheduledBytesList = lcgScheduler_->getScheduledBytesList();
-    bool firstSdu = true;
 
     // Ask for a MAC sdu for each scheduled user on each codeword
     LteMacScheduleList::const_iterator it;
@@ -190,10 +189,9 @@ int LteMacUe::macSduRequest()
         LteMacScheduleList::const_iterator bit = scheduledBytesList->find(key);
 
         unsigned int sduSize = bit->second;
-        if (firstSdu)
+        if (lcgScheduler_->isFirstSdu(destCid))
         {
             sduSize -= MAC_HEADER;    // do not consider MAC header size
-            firstSdu = false;
         }
 
         // consume bytes on this codeword
