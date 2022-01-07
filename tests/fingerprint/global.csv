@@ -17,13 +17,13 @@
 
 # DEMO W/ results
 /simulations/demo/,                  -f omnetpp.ini -c VideoStreaming -r 0,    5s,              5ef4-2c55/tls, PASS,
-/simulations/demo/,                  -f omnetpp.ini -c VoIP -r 0,              5s,              1b06-23ce/tls, PASS,
-/simulations/demo/,                  -f omnetpp.ini -c VoIP_PF -r 0,           5s,              c8ee-bd25/tls, PASS,
+/simulations/demo/,                  -f omnetpp.ini -c VoIP -r 0,              5s,              1b0c-03ce/tls, PASS,
+/simulations/demo/,                  -f omnetpp.ini -c VoIP_PF -r 0,           5s,              c8c6-3d25/tls, PASS,
 #/simulations/demo/,                  -f omnetpp.ini -c Large-VoIP_PF -r 0,     5s,             ada5-c3af/tls, PASS,
 #/simulations/demo/,                  -f omnetpp.ini -c Large-VoIP_MaxCI -r 0,  5s,             981a-be0c/tls, PASS,
 /simulations/demo/,                  -f omnetpp.ini -c VoIP_DL-UL -r 0,        5s,              328b-abe6/tls, PASS,
-/simulations/demo/,                  -f omnetpp.ini -c VoIP-DL -r 0,           5s,              0f8f-3a98/tls, PASS,
-/simulations/demo/,                  -f omnetpp.ini -c VoIP-UL -r 0,           5s,              8db6-112c/tls, PASS,
+/simulations/demo/,                  -f omnetpp.ini -c VoIP-DL -r 0,           5s,              05af-3a98/tls, PASS,
+/simulations/demo/,                  -f omnetpp.ini -c VoIP-UL -r 0,           5s,              af96-112c/tls, PASS,
 
 
 
