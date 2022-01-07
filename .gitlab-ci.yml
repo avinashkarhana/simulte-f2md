@@ -3,7 +3,7 @@ variables:
   OPPCONTTAG: '6.0pre10'   # tag of OMNeT++ container to be used
   #OPPCONTTAG: 'latest'
   #INETBRANCH: 'master'
-  INETBRANCH: 'v4.3.0'
+  INETBRANCH: 'v4.3.2'
 
 stages:
   - build
