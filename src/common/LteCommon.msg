@@ -152,95 +152,95 @@ struct DeploymentScenarioMapping
 }
 
 
-class X2InformationElement
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteMacBuffer
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteMacQueue
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class MacControlElement
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteMacPdu
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteBinder
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteCellInfo
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteMacEnb
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LteMacBase
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-class LtePhyBase
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
-
-class LteRealisticChannelModel
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
-
+//class X2InformationElement
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteMacBuffer
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteMacQueue
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class MacControlElement
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteMacPdu
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteBinder
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteCellInfo
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteMacEnb
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LteMacBase
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//class LtePhyBase
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
+//
+//class LteRealisticChannelModel
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
+//
 //class LteControlInfo
 //{
 //    @existingClass;
 //    @opaque;
 //    @toString(.str());
 //}
-
-class ExtCell
-{
-    @existingClass;
-    @opaque;
-    @toString(.str());
-}
+//
+//class ExtCell
+//{
+//    @existingClass;
+//    @opaque;
+//    @toString(.str());
+//}
  

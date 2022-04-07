@@ -379,7 +379,7 @@ void UmRxEntity::reassemble(unsigned int index)
                     case 0: {  // FI=00
                         EV << NOW << " UmRxEntity::reassemble The PDU includes one whole SDU [sno=" << sduSno << "]" << endl;
                         if (sduLengthPktLeng != sduWholeLength)
-                            throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %d B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
+                            throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %zu B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
 
                         toPdcp(pktSdu);
                         pktSdu = nullptr;
@@ -519,7 +519,7 @@ void UmRxEntity::reassemble(unsigned int index)
 
                         EV << NOW << " UmRxEntity::reassemble This is a whole SDU [sno=" << sduSno << "]" << endl;
                         if (sduLengthPktLeng != sduWholeLength)
-                            throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %d B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
+                            throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %zu B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
 
                         toPdcp(pktSdu);
                         pktSdu = nullptr;
@@ -603,7 +603,7 @@ void UmRxEntity::reassemble(unsigned int index)
                     // it is a whole SDU, send the sdu to the PDCP
                     EV << NOW << " UmRxEntity::reassemble This is a whole SDU [sno=" << sduSno << "]" << endl;
                     if (sduLengthPktLeng != sduWholeLength)
-                        throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %d B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
+                        throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %zu B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
 
                     toPdcp(pktSdu);
                     pktSdu = nullptr;
@@ -644,7 +644,7 @@ void UmRxEntity::reassemble(unsigned int index)
             // it is a whole SDU, send to the PDCP
             EV << NOW << " UmRxEntity::reassemble This is a whole SDU [sno=" << sduSno << "]" << endl;
             if (sduLengthPktLeng != sduWholeLength)
-                throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %d B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
+                throw cRuntimeError("UmRxEntity::reassemble(): failed reassembly, the reassembled SDU has size %zu B, while the original SDU had size %d B",sduLengthPktLeng,sduWholeLength);
 
             toPdcp(pktSdu);
             pktSdu = nullptr;

@@ -785,7 +785,7 @@ UserTxParams* LteMacUeD2D::getPreconfiguredTxParams()
 
     Cqi cqi = par("d2dCqi");
     if (cqi < 0 || cqi > 15)
-        throw cRuntimeError("LteMacUeD2D::getPreconfiguredTxParams - CQI %s is not a valid value. Aborting", cqi);
+        throw cRuntimeError("LteMacUeD2D::getPreconfiguredTxParams - CQI %hu is not a valid value. Aborting", cqi);
     txParams->writeCqi(std::vector<Cqi>(1,cqi));
 
     BandSet b;
