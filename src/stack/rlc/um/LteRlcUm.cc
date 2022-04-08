@@ -84,7 +84,7 @@ UmRxEntity* LteRlcUm::getRxBuffer(FlowControlInfo* lteInfo)
     {
         // Not found: create
         std::stringstream buf;
-        buf << "UmRxEntity Lcid: " << lcid;
+        buf << "UmRxEntity Lcid: " << lcid << " cid: " << cid;
         cModuleType* moduleType = cModuleType::get("lte.stack.rlc.UmRxEntity");
         UmRxEntity* rxEnt = check_and_cast<UmRxEntity *>(
             moduleType->createScheduleInit(buf.str().c_str(), getParentModule()));

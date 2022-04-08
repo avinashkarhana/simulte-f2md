@@ -92,7 +92,7 @@ module Ue
         }
         // cellular NIC
         lteNic: <nicType> like ILteNic {
-            nodeType = nodeType;
+            nodeType = parent.nodeType;
             @display("p=525,525");
         }
         // network layer

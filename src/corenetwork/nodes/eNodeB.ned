@@ -100,7 +100,7 @@ module eNodeBBase
         lteNic: <nicType> like ILteNic {
             parameters:
                 @display("p=433.54,520.4525");
-                nodeType = nodeType;
+                nodeType = parent.nodeType;
         }
 
         pppIf: PppInterface {
@@ -253,12 +253,12 @@ module eNodeB extends eNodeBBase
         trafficFlowFilter: TrafficFlowFilterSimplified {
             parameters:
                 @display("p=371.30002,28.44");
-                ownerType = nodeType;
+                ownerType = parent.nodeType;
         }
         gtpUser: GtpUserSimplified {
             parameters:
             	@display("p=434,48");
-            	ipOutInterface = interfaceName; 
+            	ipOutInterface = parent.interfaceName; 
         }
         gtpUserX2: GtpUserX2 {
             parameters:

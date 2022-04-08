@@ -95,7 +95,7 @@ module PgwStandard extends PgwBase
         trafficFlowFilter: TrafficFlowFilter {
             parameters:
                 @display("p=675,80");
-                ownerType = nodeType;
+                ownerType = parent.nodeType;
         }
         gtp_user: GtpUser {
             parameters:
@@ -123,7 +123,7 @@ module PgwStandardSimplified extends PgwBase
         trafficFlowFilter: TrafficFlowFilterSimplified {
             parameters:
                 @display("p=675,80");
-                ownerType = nodeType;
+                ownerType = parent.nodeType;
         }
         gtp_user: GtpUserSimplified {
             parameters:
