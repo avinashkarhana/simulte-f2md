@@ -38,7 +38,7 @@ module eNBpp extends eNodeBBase
         }
         trafficFlowFilter: TrafficFlowFilter {
             parameters:
-            	ownerType = nodeType;
+            	ownerType = parent.nodeType;
             	@display("p=200,144");
         }
 

@@ -2,8 +2,8 @@
 
 #Advanced
 /simulations/advanced/,             -f omnetpp.ini -c VoIP -r 0,                            5s,             2b31-32ba/tplx, PASS,
-/simulations/advanced/,             -f omnetpp.ini -c SchedulersTest -r 0,                  5s,             5967-6a15/tplx, PASS,
-/simulations/advanced/,             -f omnetpp.ini -c SchedulersTest -r 12,                 5s,             60e5-6c75/tplx, PASS,
+/simulations/advanced/,             -f omnetpp.ini -c SchedulersTest -r 0,                  5s,             6cd5-33c0/tplx, PASS,
+/simulations/advanced/,             -f omnetpp.ini -c SchedulersTest -r 12,                 5s,             0048-0cc8/tplx, PASS,
 
 # DEMO  
 /simulations/demo/,                 -f omnetpp.ini -c VideoStreaming -r 0,                  5s,             c225-5b71/tplx, PASS,
@@ -60,5 +60,5 @@
 /simulations/test_handover/,        -f omnetpp.ini -c FileTransfer-D2D -r 0,                5s,              9c95-aa2c/tplx, PASS,
 
 # X2
-/simulations/x2/,                   -f omnetpp.ini -c X2-Mesh-balanced -r 0,                5s,              5606-f1c5/tplx, PASS,
-/simulations/x2/,                   -f omnetpp.ini -c X2-Mesh-unbalanced -r 0,              5s,              80dd-fa90/tplx, PASS,
+/simulations/x2/,                   -f omnetpp.ini -c X2-Mesh-balanced -r 0,                5s,              1963-b090/tplx, PASS,
+/simulations/x2/,                   -f omnetpp.ini -c X2-Mesh-unbalanced -r 0,              5s,              9935-f6dd/tplx, PASS,

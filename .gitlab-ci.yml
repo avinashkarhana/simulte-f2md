@@ -1,9 +1,9 @@
 variables:
   RV: 'crownet/scripts'
-  OPPCONTTAG: '6.0pre10'   # tag of OMNeT++ container to be used
+  OPPCONTTAG: '6.0pre12'   # tag of OMNeT++ container to be used
   #OPPCONTTAG: 'latest'
   #INETBRANCH: 'master'
-  INETBRANCH: 'v4.3.2'
+  INETBRANCH: 'v4.3.3'
 
 stages:
   - build

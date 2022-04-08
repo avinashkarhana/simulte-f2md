@@ -75,9 +75,9 @@ module LteNicBase extends NetworkInterface like ILteNic
     submodules:
         // bridge between lte stack and network layer
         ip2lte: <default("IP2lte")> like INetworkLayer2lte {
-            nodeType = nodeType;
-            interfaceTableModule = interfaceTableModule;
-            routingTableModule = routingTableModule;
+            nodeType = parent.nodeType;
+            interfaceTableModule = parent.interfaceTableModule;
+            routingTableModule = parent.routingTableModule;
             @display("p=150,68");
         }
         // PDCP-RRC Layer
@@ -87,11 +87,11 @@ module LteNicBase extends NetworkInterface like ILteNic
         // RLC Layer
         rlc: LteRlc {
             @display("p=150,227");
-            d2dCapable = d2dCapable;
+            d2dCapable = parent.d2dCapable;
         }
         // MAC Layer
         mac: <LteMacType> like LteMac {
-            interfaceTableModule = interfaceTableModule;
+            interfaceTableModule = parent.interfaceTableModule;
             @display("p=151,315");
         }
         // LtePhy submodule
@@ -130,8 +130,8 @@ module LteNicBase extends NetworkInterface like ILteNic
 
         //# external: lower connection
         radioIn --> phy.radioIn;
-        ip2lte.upperLayerOut --> {  delay = processingDelayOut; } --> upperLayerOut;
-        upperLayerIn --> {  delay = processingDelayIn; } --> ip2lte.upperLayerIn;
+        ip2lte.upperLayerOut --> {  delay = parent.processingDelayOut; } --> upperLayerOut;
+        upperLayerIn --> {  delay = parent.processingDelayIn; } --> ip2lte.upperLayerIn;
 }
 
 //

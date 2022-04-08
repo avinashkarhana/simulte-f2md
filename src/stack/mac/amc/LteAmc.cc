@@ -1187,7 +1187,7 @@ Cqi LteAmc::readWbCqi(const CqiVector& cqi)
     }
     else
     {
-        throw cRuntimeError("LteAmc::getWbCqi(): Unknown weight %d", cqiComputationWeight_);
+        throw cRuntimeError("LteAmc::getWbCqi(): Unknown weight %f", cqiComputationWeight_);
     }
 
     EV << "LteAmc::getWbCqi - Cqi " << cqiRet << " evaluated\n";
@@ -1262,7 +1262,7 @@ Pmi LteAmc::readWbPmi(const PmiVector& pmi)
     }
     else
     {
-        throw cRuntimeError("LteAmc::readWbPmi(): Unknown weight %d", pmiComputationWeight_);
+        throw cRuntimeError("LteAmc::readWbPmi(): Unknown weight %f", pmiComputationWeight_);
     }
 
     EV << "LteAmc::getWbPmi - Pmi " << pmiRet << " evaluated\n";

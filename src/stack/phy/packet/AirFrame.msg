@@ -20,14 +20,14 @@
 // * part of:     framework implementation developed by tkn
 // **************************************************************************/
 
+
+import inet.common.INETDefs;
+import inet.common.geometry.Geometry;
+
 cplusplus {{
-#include "inet/common/INETDefs.h"
-#include "inet/common/geometry/common/Coord.h"
 #include "stack/phy/packet/ModulationType.h"
 }}
 
-
-class inet::Coord {@existingClass;}
 class ModulationType {@existingClass;};
 
 //
