@@ -1,4 +1,30 @@
-﻿SimuLTE
+﻿
+Important Note
+==============
+As of 04/2022, the crownet project has completely switched to
+[Simu5G](http://simu5g.org/) which is an improved model including
+all components of SimuLTE. Therefore, we will no longer update
+this fork of the SimuLTE project. We keep this repository only to
+allow others to reproduce our results obtained with our fork
+of SimuLTE.
+
+For newer simulations, we recommend to use Simu5G.
+
+The original Simu5G repository can be found at:
+
+https://github.com/Unipisa/Simu5G
+
+Thanks to the University of Pisa (Giovanni Nardini, Giovanni Stea, Antonio Virdis)
+for making this great model publicly available.
+
+For our Crownet project we maintain a slightly modified version of Simu5G
+which can be found at:
+
+https://github.com/roVer-HM/Simu5G
+
+
+
+SimuLTE
 =======
 
 LTE/LTE-A user plane simulation model, compatible with the INET Framework.
@@ -8,7 +34,7 @@ Dependencies
 
 The current master/head version requires
 
-- OMNeT++ 6.0pre10 and INET 4.3.2
+- OMNeT++ 6.0pre12 and INET 4.3.3
 
 
 Setup
