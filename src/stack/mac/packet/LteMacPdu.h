@@ -180,10 +180,10 @@ class SIMULTE_API LteMacPdu : public LteMacPdu_Base
         ASSERT(false);
     }
 
-    virtual void insertSdu(const inet::Packet& sdu) override
-    {
-        ASSERT(false);
-    }
+    // virtual void insertSdu(const inet::Packet& sdu) override
+    // {
+    //     ASSERT(false);
+    // }
 
     virtual void insertSdu(size_t k, const inet::Packet& sdu) override
     {
@@ -284,6 +284,11 @@ class SIMULTE_API LteMacPdu : public LteMacPdu_Base
     {
         LteMacPdu_Base::setHeaderLength(headerLength);
         this->setChunkLength(b(getBitLength()));
+    }
+
+    virtual void appendSdu(const inet::Packet& sdu) override
+    {
+        throw omnetpp::cRuntimeError("Method not implemented");
     }
 };
 
